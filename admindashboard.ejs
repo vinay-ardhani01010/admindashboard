@@ -4,6 +4,7 @@
   <title>Aqua-Mart</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -222,9 +223,64 @@
         border: 1px solid red;
    
       }
+      .navbar{
+    display:flex;
+    align-items: center;
+    padding:20ps;
+
+  }
+  body{
+    font-family: 'Poppins', sans-serif;
+  }
+  nav{
+    flex:1;
+    text-align:left;
+  }
+  nav ul{
+    display:inline-block;
+    list-style-type: none;
+  }
+  nav ul li{
+    display:inline-block;
+    margin-right:20px;
+  }
+  a{
+    text-decoration:none;
+    color:#555;
+
+  }
+  p{
+    color:#555;
+  }
+  .container{
+    max-width:1300px;
+    margin:auto;
+    padding-left: 25px;
+    padding-right:25px;
+  }
+  
+  .col-sm-8,.col-sm-2{
+    background:#3383FF;
+  }
   </style>
 </head>
 <body onload="filterSelection('1')" style="font-family:candara">
+  <div class="row"  >
+    <div class="col-sm-2">
+     <img src="/images/logo.jpg" id="logo">
+    </div>
+    <div class="col-sm-8 pt-3">
+      <a href="/"><button type="button" class="btn btn-default" id="home" style="font-size: 20px;"><b style="color: white;">HOME</b></button></a>
+      <a href="/authproducts"><button type="button" class="btn btn-default" id="about" style="font-size: 20px;"><b style="color: white;">AUTHORIZED PRODUCTS</b></button></a>
+      <a href="/unauthproducts"><button type="button" class="btn btn-default" id="about" style="font-size: 20px;"><b style="color: white;">UNAUTHORIZED PRODUCTS</b></button></a>
+      <a href="/dashboard"><button type="button" class="btn btn-default" id="services" style="font-size: 20px;"><b style="color: white;">DASHBOARD</b></button></a>
+    </div>
+      <div class="col-sm-2 pt-4">
+        <a href="/users/logout" class="ghost-button2" id="logout"><i class='fas fa-user-alt' style="font-size: 20px; color:white">
+        </i><font style="font-size: 20px; color: white">  Logout</font></a>
+        </div>
+    </div>
+
   <script>
     const showResults = (data) => {
       let displayString = '';
@@ -252,7 +308,6 @@
         })
       }
     }
-
     //product by location
     const searchProductByLocation = (e) => {
       console.log(e.value);
@@ -280,7 +335,6 @@
       }
       $('#results-display-location').html(displayString);
     }
-
     
   </script>
 <div class="container">
@@ -288,15 +342,15 @@
    <div class="col-sm-0">
     <div style="width:25%"   class="mt-5">
  
-      <button type="button" class="btn btn-primary" id="filter" style="width:330px;">FILTER</button>
+      <button type="button" class="btn btn-primary" id="filter" style="width:330px;height:40px">FILTER</button>
         <ul class="list-group" id="filt_list" style="width:330px">
-        <form method="GET" action="/filter">
+        <form method="GET" action="/filteradmin">
           <br>
  
  
         <!--------category-------------------->
  
-        <button type="button" class="btn btn-primary btn-sm" id="cat" style="width:330px">CATEGORY</button>
+        <button type="button" class="btn btn-primary btn-sm" id="cat" style="width:330px;height:40px">CATEGORY</button>
         <div style="border-style:groove;width:330px">
         <ul class="list-group" id="cat_list"style="width:330px">	
           <% cats.forEach(cat=>{ %>
@@ -313,7 +367,7 @@
  
         <!--------company------------------------>
  
-        <button type="button" class="btn btn-primary btn-sm" id="compan" style="width:330px">COMPANY</button>
+        <button type="button" class="btn btn-primary btn-sm" id="compan" style="width:330px;height:40px">COMPANY</button>
         <div style="border-style:groove;width:330px">
         <ul class="list-group" id="compan_list" style="width:330px">
           <% brand.forEach(brand=>{ %>
@@ -326,7 +380,7 @@
         <%})%>
         </ul></div>
         <!---------------------price-------------------------->
-        <button type="button" class="btn btn-primary btn-sm" id="pri" style="width:330px">PRICE</button>
+        <button type="button" class="btn btn-primary btn-sm" id="pri" style="width:330px;height:40px">PRICE</button>
         <div style="border-style:groove;width:330px">
         <ul class="list-group" id="pri_list" style="width:330px">	
            <div class="form-check" style="width:330px">
@@ -348,7 +402,7 @@
  
         <!------------location------------------->
  
-        <button type="button" class="btn btn-primary btn-sm" id="loc"style="width:330px">LOCATION</button>
+        <button type="button" class="btn btn-primary btn-sm" id="loc"style="width:330px;height:40px">LOCATION</button>
         <div style="border-style:groove;width:330px">
         <ul class="list-group" id="location_list" style="width:330px">
  
@@ -361,7 +415,7 @@
         </div>
           <%}%>
         </ul></div>
-        <input type="submit" class="btn btn-primary btn-md"  name="" id="" style="width:330px">
+        <input type="submit" class="btn btn-primary btn-md"  name="" id="" style="width:330px;height:40px">
     </div>
    </div>
    <div class = 'col mt-2'>
@@ -376,6 +430,21 @@
          style=" width: 900px;border-style:solid;border-color:rgb(40, 104, 187);border-width: 2px;height:55px" type="text"
           placeholder="Search by location "/>
        <ul class="list-group" id="results-display-location" style="width:380px"></ul></center>
+     </div>
+     <div id='product-view'>
+      <div class="products">
+        <div class="row">
+          <% products.forEach(product => { %>
+            <div class="card--featured col-lg-3 col-sm-6 d-flex justify-content-center mt-4" onclick="javascript:location.href= '/products/<%= product._id %>'">
+              <div class="card shadow" style="width: 18rem;" onmouseover="hovered(this)" onmouseout="removed(this)">
+                <img src="<%= product.imgurl %>" style="width:100%"  id="p1">
+                <h4><center><%= product.name %></center></h4>
+                <center><%= product.vendorname %></center>
+              </div>
+            </div>
+          <% }) %>
+        </div>
+      </div>
      </div>
    </div>
  </div>
